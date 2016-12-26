@@ -1,0 +1,5 @@
+{
+  "name" : "floxim/module-contacts",
+  "description" : "Floxim contacts module.",
+  "type" : "floxim-module"
+}
