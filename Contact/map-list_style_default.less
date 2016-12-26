@@ -1,0 +1,64 @@
+/*
+vars:
+    map_position:
+        type: livesearch
+        label: Положение карты
+        values:
+            left: Слева
+            right: Справа
+            top: Сверху
+            bottom: Снизу
+    map_ratio:
+        type: ratio
+        label: Пропорции карты
+    map_width:
+        type: number
+        label: Ширина карты
+        min: 20
+        max: 90
+        step: 5            
+*/
+.map-list_style_default(
+    @map_position: left;
+    @map_ratio: 1;
+    @map_width: 50%;
+) {
+    display:flex;
+    
+    & when (@map_position = left), (@map_position = right) {
+        flex-direction:row;
+    }
+    & when (@map_position = top), (@map_position = bottom) {
+        flex-direction: column;
+    }
+    #__map-box {
+        & when (@map_position = left), (@map_position = right) {
+            flex-basis: @map_width;
+        }
+        & when (@map_position = right), (@map_position = bottom) {
+            order:2;
+        }
+        &:after {
+            content: '';
+            display:block;
+            padding-top: 100% / @map_ratio;
+        }
+        position:relative;
+    }
+    
+    #__map {
+        position:absolute;
+        top:0;
+        right:0;
+        bottom:0;
+        left:0;
+    }
+    
+    #__list {
+        & when (@map_position = left), (@map_position = right) {
+            flex-basis: 100% - @map_width;
+        }
+        flex-grow: 0;
+        flex-shrink: 0;
+    }
+}
