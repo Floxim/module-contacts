@@ -1,0 +1,116 @@
+/*
+vars:
+    ratio:
+        type: ratio
+        label: Пропорции карты
+    data_position:
+        label: Область с данными
+        type: livesearch
+        values:
+            none: Не показывать
+            right: Справа
+            left: Слева
+            center: По центру
+    data_vertical_position:
+        label: По вертикали
+        type: livesearch
+        parent: data_position != none
+        values:
+            top: Сверху
+            middle: По центру
+            bottom: Снизу
+            stretch: Растянуть
+    data_width:
+        label: Ширина
+        type: number
+        min: 10
+        max: 60
+        parent: data_position != none
+    data_background:
+        type: css-background
+        parent: data_position != none
+        default:
+            - light
+            - color, main 5 0.8
+    data_margin:
+        parent: data_position != none
+        type: measures
+        prop: margin
+        step: 0.25
+export:
+    data_position: '@data_position'
+container:
+    lightness: data_background
+*/
+.map_style_default(
+    @ratio: 2;
+    @data_position: none;
+    @data_width: 30%;
+    @data_background: @data_background;
+    @data_vertical_position: top;
+    @data_margin: 0rem 0rem 0rem 0rem;
+) {
+    
+    position:relative;
+    width:100%;
+    display:flex;
+    
+    
+    & when (@data_position = left) {
+        justify-content: flex-start;
+    }
+    & when (@data_position = right) {
+        justify-content: flex-end;
+    }
+    & when (@data_position = center) {
+        justify-content: center;
+    }
+
+    & when (@data_vertical_position = top) {
+        align-items: flex-start;
+    }
+
+    & when (@data_vertical_position = middle) {
+        align-items: center;
+    }
+
+    & when (@data_vertical_position = bottom) {
+        align-items: flex-end;
+    }
+    
+    #__map {
+        position:absolute;
+        top:0;
+        right:0;
+        bottom:0;
+        left:0;
+    }
+    
+    #__spacer {
+        width:100%;
+        &:after {
+            content:'';
+            display:block;
+            padding-top: 100% / @ratio;
+        }
+    }
+    
+    #__area {
+        & when (@data_position = none) {
+            display:none;
+        }
+        & when not(@data_position = none) {
+            width:@data_width;
+            .background(@data_background);
+            margin: @data_margin;
+            
+            & when (length(@data_margin) = 4) {
+                margin-left: ~"calc(-100% + " extract(@data_margin, 2) ~")"; 
+            }
+            & when not(length(@data_margin) = 4) {
+                margin-left:-100%;
+            }
+            z-index:1;
+        }
+    }
+}
