@@ -11,4 +11,14 @@ class Entity extends \Floxim\Contacts\Contact\Entity
         $this['description'] = 'Наш сайт';
         $this['value'] = 'http://company.com/';
     }
+    
+    public function _getUrl()
+    {
+        $val = $this['value'];
+        $val = trim($val);
+        if (!preg_match("~^https?://~", $val)) {
+            $val = 'http://'.$val;
+        }
+        return $val;
+    }
 }

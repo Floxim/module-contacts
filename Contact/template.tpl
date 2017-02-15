@@ -39,7 +39,7 @@
     {apply contact_type_value /}
 </span>
     
-<a fx:template="contact_type_value[$short_type == 'email']" href="mailto:{$value}">
+<a fx:template="contact_type_value[$short_type == 'email']" href="{$url}">
     {$value}
 </a>
 
@@ -51,6 +51,6 @@
     {$value}
 </span>
 
-<a fx:template="contact_type_value[$short_type == 'link']" href="{$value}">
+<a fx:template="contact_type_value[$short_type == 'link']" href="{$url}">
     {$value}
 </a>

@@ -11,4 +11,11 @@ class Entity extends \Floxim\Contacts\Contact\Entity
         $this['description'] = 'Пишите письма!';
         $this['value'] = 'mycompany@yandex.ru';
     }
+    
+    public function _getUrl()
+    {
+        $val = $this['value'];
+        return 'mailto:'.$val;
+    }
+            
 }
