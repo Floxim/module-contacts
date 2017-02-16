@@ -24,7 +24,7 @@ vars:
         label: Ширина
         type: number
         min: 10
-        max: 60
+        max: 100
         parent: data_position != none
     data_background:
         type: css-background
@@ -100,14 +100,16 @@ container:
             display:none;
         }
         & when not(@data_position = none) {
-            width:@data_width;
             .background(@data_background);
             margin: @data_margin;
             
             & when (length(@data_margin) = 4) {
-                margin-left: ~"calc(-100% + " extract(@data_margin, 2) ~")"; 
+                @margins: unit(extract(@data_margin, 2), rem) + unit(extract(@data_margin, 4), rem);
+                width: ~"calc(" @data_width ~" - " @margins ~")";
+                margin-left: ~"calc(-100% + " unit(extract(@data_margin, 4), rem) ~")"; 
             }
             & when not(length(@data_margin) = 4) {
+                width:@data_width;
                 margin-left:-100%;
             }
             z-index:1;
