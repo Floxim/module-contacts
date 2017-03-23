@@ -19,5 +19,6 @@ class Entity extends \Floxim\Contacts\Contact\Entity
         parent::fake();
         $this['description'] = 'Приходите к нам в офис!';
         $this['value'] = '221b Baker Street, London, NW1 6XE, UK';
+        $this['icon'] = 'fa map-marker';
     }
 }

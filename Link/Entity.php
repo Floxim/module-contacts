@@ -10,6 +10,7 @@ class Entity extends \Floxim\Contacts\Contact\Entity
         parent::fake();
         $this['description'] = 'Наш сайт';
         $this['value'] = 'http://company.com/';
+        $this['icon'] = 'fa globe';
     }
     
     public function _getUrl()

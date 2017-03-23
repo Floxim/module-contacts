@@ -10,5 +10,6 @@ class Entity extends \Floxim\Contacts\Contact\Entity
         parent::fake();
         $this['description'] = 'Горячая линия';
         $this['value'] = '8 800 2000 600';
+        $this['icon'] = 'fa phone';
     }
 }
