@@ -5,9 +5,9 @@ use Floxim\Floxim\System\Fx as fx;
 
 class Entity extends \Floxim\Contacts\Contact\Entity
 {
-    public function fake()
+    public function fake($level = 0)
     {
-        parent::fake();
+        parent::fake($level);
         $this['description'] = 'Пишите письма!';
         $this['value'] = 'mycompany@yandex.ru';
         $this['icon'] = 'fa envelope-o';
