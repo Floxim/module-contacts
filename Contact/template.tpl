@@ -16,7 +16,6 @@
     <div fx:aif="$data_position != 'none'" fx:e="area" fx:area-name="Данные на карте" fx:area="$map_id">
 
     </div>
-    
 </div>
 
 <div fx:template="map_list" fx:name="С картой" fx:of="list" fx:b="map-list" fx:styled-inline>
